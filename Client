@@ -1,9 +1,9 @@
 local ElixirLib = {}
 
--- === BASECOLOR DEFINIDA PARA ALTERAÇÃO GLOBAL ===
+-- === BASECOLOR DEFINIDA PARA ALTERAÃ‡ÃƒO GLOBAL ===
 local BaseColor = Color3.fromRGB(0, 0, 255) -- Altere aqui para mudar todo o tema
 
--- Função para escurecer a cor
+-- FunÃ§Ã£o para escurecer a cor
 local function darkenColor(color, factor)
     return Color3.new(
         math.clamp(color.R * factor, 0, 1),
@@ -12,7 +12,7 @@ local function darkenColor(color, factor)
     )
 end
 
--- === CORES DEFINIDAS DE FORMA DINÂMICA ===
+-- === CORES DEFINIDAS DE FORMA DINÃ‚MICA ===
 local Colors = {
     MainColor = BaseColor,
     MainBackgroundStart = BaseColor,
@@ -131,7 +131,7 @@ function ElixirLib:MakeWindow(config)
 
 
 
-    -- Notificação personalizada (via módulo externo)
+    -- NotificaÃ§Ã£o personalizada (via mÃ³dulo externo)
     local function showNotification(message)
         local notification = loadstring(game:HttpGet('https://raw.githubusercontent.com/9menta/tests/refs/heads/main/notification.lua'))()
         notification({
@@ -142,7 +142,7 @@ function ElixirLib:MakeWindow(config)
         })
     end
 
-    -- Controle de minimização e notificação só 1 vez
+    -- Controle de minimizaÃ§Ã£o e notificaÃ§Ã£o sÃ³ 1 vez
     local isMinimized = false
     local notificationShown = false
 
@@ -150,7 +150,7 @@ function ElixirLib:MakeWindow(config)
         isMinimized = not isMinimized
         mainFrame.Visible = not isMinimized
         if isMinimized and not notificationShown then
-            showNotification("Pressione RightShift ou use o botão flutuante para abrir.")
+            showNotification("Pressione RightShift ou use o botÃ£o flutuante para abrir.")
             notificationShown = true
         end
     end
@@ -199,7 +199,7 @@ function ElixirLib:MakeWindow(config)
         end
     end)
 
-    -- Botão flutuante minimizar
+    -- BotÃ£o flutuante minimizar
     local floatButton = Instance.new("ImageButton")
     floatButton.Name = "FloatingMinimizeButton"
     floatButton.Size = UDim2.new(0, 40, 0, 40)
@@ -218,7 +218,7 @@ function ElixirLib:MakeWindow(config)
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Parent = floatButton
 
-    -- Drag do botão flutuante
+    -- Drag do botÃ£o flutuante
     local draggingFloat = false
     local dragInputFloat, dragStartFloat, startPosFloat
 
@@ -261,7 +261,7 @@ local Tabs = {}
 local tabContents = {}
 local tabButtons = {}
 
--- ScrollingFrame para os botões de aba (esquerda)
+-- ScrollingFrame para os botÃµes de aba (esquerda)
 local tabListFrame = Instance.new("ScrollingFrame")
 tabListFrame.Size = UDim2.new(1, 0, 1, 0)
 tabListFrame.Position = UDim2.new(0, 0, 0, 0)
@@ -284,7 +284,7 @@ function Window:MakeTab(tabData)
     local tab = {}
     tab.Sections = {}
 
-    -- Botão da aba (esquerda)
+    -- BotÃ£o da aba (esquerda)
     local button = Instance.new("TextButton")
     button.Size = UDim2.new(1.1, -20, 0, 40)
     button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -322,7 +322,7 @@ function Window:MakeTab(tabData)
 
     table.insert(tabButtons, button)
 
-    -- Frame de conteúdo da aba (direita)
+    -- Frame de conteÃºdo da aba (direita)
     local tabContent = Instance.new("Frame")
     tabContent.Size = UDim2.new(1, 0, 1, 0)
     tabContent.BackgroundTransparency = 1
@@ -333,7 +333,7 @@ function Window:MakeTab(tabData)
     corner.CornerRadius = UDim.new(0, 12)
     corner.Parent = tabContent
 
-    -- Título da aba
+    -- TÃ­tulo da aba
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, -20, 0, 50)
     title.Position = UDim2.new(0, 10, 0, 10)
@@ -345,7 +345,7 @@ function Window:MakeTab(tabData)
     title.TextXAlignment = Enum.TextXAlignment.Left
     title.Parent = tabContent
 
-    -- Área rolável para os elementos (direita)
+    -- Ãrea rolÃ¡vel para os elementos (direita)
     local scrollContainer = Instance.new("ScrollingFrame")
     scrollContainer.Size = UDim2.new(1, -20, 1, -70)
     scrollContainer.Position = UDim2.new(0, 10, 0, 60)
@@ -362,7 +362,7 @@ function Window:MakeTab(tabData)
     listLayout.SortOrder = Enum.SortOrder.LayoutOrder
     listLayout.Parent = scrollContainer
 
-    -- Área para adicionar elementos da aba
+    -- Ãrea para adicionar elementos da aba
     tab.Container = scrollContainer
 
     -- Alternar visibilidade das abas
@@ -378,7 +378,7 @@ function Window:MakeTab(tabData)
 
 
 
-	--Seções🟢
+	--SeÃ§ÃµesðŸŸ¢
    function tab:AddSection(sectionData)
     local name = sectionData.Name or "Section"
 
@@ -420,7 +420,7 @@ function Window:MakeTab(tabData)
     return section
 end
 	
-	--label🟢
+	--labelðŸŸ¢
 	
 	function tab:AddLabel(text)
     local label = Instance.new("TextLabel")
@@ -447,7 +447,7 @@ end
     return label
 end
     
-	--Toggle 🟢
+	--Toggle ðŸŸ¢
 function tab:AddToggle(toggleData)
     local toggleName = toggleData.Name or "Toggle"
     local defaultValue = toggleData.Default or false
@@ -573,20 +573,20 @@ end
 
     
     
-    --- aqui eo botao🟢
+    --- aqui eo botaoðŸŸ¢
 
     function tab:AddButton(buttonData)
         local name = buttonData.Name or "Button"
         local callback = buttonData.Callback or function() end
     
-        -- Container do botão
+        -- Container do botÃ£o
         local buttonFrame = Instance.new("Frame")
         buttonFrame.Size = UDim2.new(1, 0, 0, 30)
         buttonFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
         buttonFrame.LayoutOrder = #self.Container:GetChildren() + 1
         buttonFrame.Parent = self.Container
     
-        -- Estilo do botão
+        -- Estilo do botÃ£o
         local buttonCorner = Instance.new("UICorner")
         buttonCorner.CornerRadius = UDim.new(0, 6)
         buttonCorner.Parent = buttonFrame
@@ -597,7 +597,7 @@ end
         buttonStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
         buttonStroke.Parent = buttonFrame
     
-        -- Nome do botão
+        -- Nome do botÃ£o
         local buttonLabel = Instance.new("TextButton")
         buttonLabel.Size = UDim2.new(1, -10, 1, 0)
         buttonLabel.Position = UDim2.new(0, 5, 0, 0)
@@ -610,15 +610,15 @@ end
         buttonLabel.TextXAlignment = Enum.TextXAlignment.Center
         buttonLabel.Parent = buttonFrame
     
-        -- Ação do botão
+        -- AÃ§Ã£o do botÃ£o
         buttonLabel.MouseButton1Click:Connect(function()
-            callback()  -- Executa a função callback quando o botão é pressionado
+            callback()  -- Executa a funÃ§Ã£o callback quando o botÃ£o Ã© pressionado
         end)
     
         return buttonFrame
     end
     
-    --Keybind🟢
+    --KeybindðŸŸ¢
 
     function tab:AddBind(bindData)
         local name = bindData.Name or "Bind"
@@ -679,7 +679,7 @@ end
         local binding = false
         local currentKey = defaultKey
     
-        -- Ativar modo de bind ao clicar no botÃ£o
+        -- Ativar modo de bind ao clicar no botÃƒÂ£o
         bindContainer.MouseButton1Click:Connect(function()
             keyLabel.Text = "..."
             binding = true
@@ -722,7 +722,7 @@ end
         return bindContainer
     end
     
-	--Dropdown🟢
+	--DropdownðŸŸ¢
 	
     function tab:AddDropdown(dropdownData)
         local name = dropdownData.Name or "Dropdown"
@@ -762,7 +762,7 @@ end
         label.ZIndex = 2
         label.Parent = dropdownContainer
     
-        -- Botão principal do dropdown
+        -- BotÃ£o principal do dropdown
         local dropButton = Instance.new("TextButton")
         dropButton.Size = UDim2.new(0, 100, 0, 24)
         dropButton.Position = UDim2.new(1, -110, 0.5, -12)
@@ -782,7 +782,7 @@ end
         dropStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
         dropStroke.Parent = dropButton
     
-        -- Lista de opções scrollável
+        -- Lista de opÃ§Ãµes scrollÃ¡vel
         local optionFrame = Instance.new("ScrollingFrame")
         optionFrame.Visible = false
         optionFrame.Size = UDim2.new(0, 100, 0, 100)
@@ -838,7 +838,7 @@ end
     end
     
     
--- Slider 🟢 (estilo neon degradê)
+-- Slider ðŸŸ¢ (estilo neon degradÃª)
 function tab:AddSlider(sliderData)
     local name = sliderData.Name or "Slider"
     local min = sliderData.Min or 0
@@ -886,7 +886,7 @@ function tab:AddSlider(sliderData)
     local bgCorner = Instance.new("UICorner", sliderBG)
     bgCorner.CornerRadius = UDim.new(0, 10)
 
-    -- Preenchimento com degradê
+    -- Preenchimento com degradÃª
     local fillBar = Instance.new("Frame")
     fillBar.Size = UDim2.new((default - min) / (max - min), 0, 1, 0)
     fillBar.BackgroundColor3 = color
@@ -916,7 +916,7 @@ function tab:AddSlider(sliderData)
     valueLabel.TextXAlignment = Enum.TextXAlignment.Center
     valueLabel.Parent = sliderContainer
 
-    -- Atualização de valor
+    -- AtualizaÃ§Ã£o de valor
     local function updateSlider(inputX)
         local relX = math.clamp(inputX - sliderBG.AbsolutePosition.X, 0, sliderBG.AbsoluteSize.X)
         local percent = relX / sliderBG.AbsoluteSize.X
@@ -1003,7 +1003,7 @@ end
     Instance.new("UICorner", textBox).CornerRadius = UDim.new(0, 6)
 
     local textBoxStroke = Instance.new("UIStroke")
-    textBoxStroke.Color = Color3.fromRGB(0, 255, 0) -- Verde
+    textBoxStroke.Color = Color3.fromRGB(0, 0, 255) -- Verde
     textBoxStroke.Thickness = 1
     textBoxStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     textBoxStroke.Parent = textBox
@@ -1031,7 +1031,7 @@ resizeButton.Size = UDim2.new(0, 20, 0, 20)
 resizeButton.Position = UDim2.new(1, -20, 1, -20)
 resizeButton.AnchorPoint = Vector2.new(1, 1)
 resizeButton.BackgroundTransparency = 1
-resizeButton.Image = "rbxassetid://6031097226" -- Ícone de redimensionar (setas diagonais)
+resizeButton.Image = "rbxassetid://6031097226" -- Ãcone de redimensionar (setas diagonais)
 resizeButton.ZIndex = 10
 resizeButton.Parent = mainFrame
 resizeButton.Active = true
