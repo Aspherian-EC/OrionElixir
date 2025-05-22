@@ -1,7 +1,7 @@
 local ElixirLib = {}
 
 -- === BASECOLOR DEFINIDA PARA ALTERAÇÃO GLOBAL ===
-local BaseColor = Color3.fromRGB(0, 0, 200) -- Altere aqui para mudar todo o tema
+local BaseColor = Color3.fromRGB(0, 0, 255) -- Altere aqui para mudar todo o tema
 
 -- Função para escurecer a cor
 local function darkenColor(color, factor)
@@ -507,15 +507,10 @@ function tab:AddToggle(toggleData)
     frameStroke.Parent = switchFrame
 
     local frameGradient = Instance.new("UIGradient")
-    local gradientOff = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(50, 50, 50)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(130, 130, 130))
-    }
-    local gradientOn = ColorSequence.new{
+    frameGradient.Color = ColorSequence.new{
         ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
         ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
     }
-    frameGradient.Color = defaultValue and gradientOn or gradientOff
     frameGradient.Parent = switchFrame
 
     local ball = Instance.new("Frame")
@@ -529,24 +524,42 @@ function tab:AddToggle(toggleData)
 
     local ballStroke = Instance.new("UIStroke")
     ballStroke.Thickness = 2
-    ballStroke.Color = defaultValue and Colors.BaseColor or Color3.fromRGB(100, 100, 100)
+    ballStroke.Color = Color3.fromRGB(100, 100, 100)
     ballStroke.Parent = ball
 
     local ballGradient = Instance.new("UIGradient")
+    ballGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
+        ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
+    }
+    ballGradient.Parent = ball
+
+    local colorOff = Color3.fromRGB(100, 100, 100)
+    local colorOn = Colors.BaseColor
+
+    local gradientOff = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(50, 50, 50)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(130, 130, 130))
+    }
+
+    local gradientOn = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
+        ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
+    }
+
     local ballGradientOff = ColorSequence.new{
         ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 30, 30)),
         ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80))
     }
+
     local ballGradientOn = ColorSequence.new{
         ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
         ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
     }
-    ballGradient.Color = defaultValue and ballGradientOn or ballGradientOff
-    ballGradient.Parent = ball
-
-    local toggled = defaultValue
 
     local tweenInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+    local toggled = defaultValue
 
     local function toggleSwitch()
         toggled = not toggled
@@ -554,7 +567,7 @@ function tab:AddToggle(toggleData)
         local newPos = toggled and UDim2.new(1, -22, 0, 2) or UDim2.new(0, 2, 0, 2)
         TweenService:Create(ball, tweenInfo, { Position = newPos }):Play()
 
-        local strokeColor = toggled and Colors.BaseColor or Color3.fromRGB(100, 100, 100)
+        local strokeColor = toggled and colorOn or colorOff
         TweenService:Create(ballStroke, tweenInfo, { Color = strokeColor }):Play()
         TweenService:Create(frameStroke, tweenInfo, { Color = strokeColor }):Play()
 
@@ -569,7 +582,6 @@ function tab:AddToggle(toggleData)
 
     return toggleButton
 end
-
 
     
     
