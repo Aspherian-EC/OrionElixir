@@ -448,141 +448,141 @@ end
 end
     
 	--Toggle 🟢
-	function tab:AddToggle(toggleData)
-        local toggleName = toggleData.Name or "Toggle"
-        local defaultValue = toggleData.Default or false
-        local callback = toggleData.Callback or function() end
-    
-        local TweenService = game:GetService("TweenService")
-    
-        local toggleButton = Instance.new("TextButton")
-        toggleButton.Size = UDim2.new(1, 0, 0, 40)
-        toggleButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        toggleButton.Text = ""
-        toggleButton.AutoButtonColor = false
-        toggleButton.LayoutOrder = #self.Container:GetChildren() + 1
-        toggleButton.Parent = self.Container
-    
-        local corner = Instance.new("UICorner")
-        corner.CornerRadius = UDim.new(0, 8)
-        corner.Parent = toggleButton
-    
-        local stroke = Instance.new("UIStroke")
-        stroke.Color = Color3.fromRGB(0, 0, 0) --STROKE 
-        stroke.Thickness = 1
-        stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        stroke.Parent = toggleButton
-    
-        local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(1, -60, 1, 0)
-        label.Position = UDim2.new(0, 10, 0, 0)
-        label.BackgroundTransparency = 1
-        label.Text = toggleName
-        label.TextColor3 = Color3.fromRGB(255, 255, 255)
-        label.Font = Enum.Font.Gotham
-        label.TextSize = 16
-        label.TextXAlignment = Enum.TextXAlignment.Left
-        label.Parent = toggleButton
-    
-        local switch = Instance.new("TextButton")
-        switch.Size = UDim2.new(0, 50, 0, 24)
-        switch.Position = UDim2.new(1, -60, 0.5, -12)
-        switch.AnchorPoint = Vector2.new(0, 0)
-        switch.BackgroundTransparency = 1
-        switch.BorderSizePixel = 0
-        switch.Text = ""
-        switch.Parent = toggleButton
-    
-        local switchFrame = Instance.new("Frame")
-        switchFrame.Size = UDim2.new(1, 0, 1, 0)
-        switchFrame.Position = UDim2.new(0, 0, 0, 0)
-        switchFrame.BorderSizePixel = 0
-        switchFrame.Parent = switch
-    
-        Instance.new("UICorner", switchFrame).CornerRadius = UDim.new(1, 0)
-    
-        local frameStroke = Instance.new("UIStroke")
-        frameStroke.Thickness = 2
-        frameStroke.Color = Color3.fromRGB(100, 100, 100)
-        frameStroke.Parent = switchFrame
-    
-        local frameGradient = Instance.new("UIGradient")
-        frameGradient.Color = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(50, 50, 50)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(130, 130, 130))
-        }
-        frameGradient.Parent = switchFrame
-    
-        local ball = Instance.new("Frame")
-        ball.Size = UDim2.new(0, 20, 1, -4)
-        ball.Position = defaultValue and UDim2.new(1, -22, 0, 2) or UDim2.new(0, 2, 0, 2)
-        ball.BackgroundTransparency = 1
-        ball.BorderSizePixel = 0
-        ball.Parent = switchFrame
-    
-        Instance.new("UICorner", ball).CornerRadius = UDim.new(1, 0)
-    
-        local ballStroke = Instance.new("UIStroke")
-        ballStroke.Thickness = 2
-        ballStroke.Color = Color3.fromRGB(100, 100, 100)
-        ballStroke.Parent = ball
-    
-        local ballGradient = Instance.new("UIGradient")
-        ballGradient.Color = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 30, 30)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80))
-        }
-        ballGradient.Parent = ball
-    
-        -- Cores de estado
-        local colorOff = Color3.fromRGB(100, 100, 100)
-        local colorOn = Color3.fromRGB(0, 255, 0) -- verde neon
-    
-        local gradientOff = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(50, 50, 50)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(130, 130, 130))
-        }
-    
-        local gradientOn = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 180, 0)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 100))
-        }
-    
-        local ballGradientOff = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 30, 30)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80))
-        }
-    
-        local ballGradientOn = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 200, 0)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(100, 255, 150))
-        }
-    
-        local tweenInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    
-        local toggled = defaultValue
-    
-        local function toggleSwitch()
-            toggled = not toggled
-    
-            local newPos = toggled and UDim2.new(1, -22, 0, 2) or UDim2.new(0, 2, 0, 2)
-            TweenService:Create(ball, tweenInfo, { Position = newPos }):Play()
-    
-            local strokeColor = toggled and colorOn or colorOff
-            TweenService:Create(ballStroke, tweenInfo, { Color = strokeColor }):Play()
-            TweenService:Create(frameStroke, tweenInfo, { Color = strokeColor }):Play()
-    
-            frameGradient.Color = toggled and gradientOn or gradientOff
-            ballGradient.Color = toggled and ballGradientOn or ballGradientOff
-    
-            callback(toggled)
-        end
-    
-        toggleButton.MouseButton1Click:Connect(toggleSwitch)
-        switch.MouseButton1Click:Connect(toggleSwitch)
-    
-        return toggleButton
+function tab:AddToggle(toggleData)
+    local toggleName = toggleData.Name or "Toggle"
+    local defaultValue = toggleData.Default or false
+    local callback = toggleData.Callback or function() end
+
+    local TweenService = game:GetService("TweenService")
+
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Size = UDim2.new(1, 0, 0, 40)
+    toggleButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    toggleButton.Text = ""
+    toggleButton.AutoButtonColor = false
+    toggleButton.LayoutOrder = #self.Container:GetChildren() + 1
+    toggleButton.Parent = self.Container
+
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 8)
+    corner.Parent = toggleButton
+
+    local stroke = Instance.new("UIStroke")
+    stroke.Color = Color3.fromRGB(0, 0, 0)
+    stroke.Thickness = 1
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    stroke.Parent = toggleButton
+
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, -60, 1, 0)
+    label.Position = UDim2.new(0, 10, 0, 0)
+    label.BackgroundTransparency = 1
+    label.Text = toggleName
+    label.TextColor3 = Color3.fromRGB(255, 255, 255)
+    label.Font = Enum.Font.Gotham
+    label.TextSize = 16
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    label.Parent = toggleButton
+
+    local switch = Instance.new("TextButton")
+    switch.Size = UDim2.new(0, 50, 0, 24)
+    switch.Position = UDim2.new(1, -60, 0.5, -12)
+    switch.AnchorPoint = Vector2.new(0, 0)
+    switch.BackgroundTransparency = 1
+    switch.BorderSizePixel = 0
+    switch.Text = ""
+    switch.Parent = toggleButton
+
+    local switchFrame = Instance.new("Frame")
+    switchFrame.Size = UDim2.new(1, 0, 1, 0)
+    switchFrame.Position = UDim2.new(0, 0, 0, 0)
+    switchFrame.BorderSizePixel = 0
+    switchFrame.Parent = switch
+
+    Instance.new("UICorner", switchFrame).CornerRadius = UDim.new(1, 0)
+
+    local frameStroke = Instance.new("UIStroke")
+    frameStroke.Thickness = 2
+    frameStroke.Color = Color3.fromRGB(100, 100, 100)
+    frameStroke.Parent = switchFrame
+
+    local frameGradient = Instance.new("UIGradient")
+    frameGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
+        ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
+    }
+    frameGradient.Parent = switchFrame
+
+    local ball = Instance.new("Frame")
+    ball.Size = UDim2.new(0, 20, 1, -4)
+    ball.Position = defaultValue and UDim2.new(1, -22, 0, 2) or UDim2.new(0, 2, 0, 2)
+    ball.BackgroundTransparency = 1
+    ball.BorderSizePixel = 0
+    ball.Parent = switchFrame
+
+    Instance.new("UICorner", ball).CornerRadius = UDim.new(1, 0)
+
+    local ballStroke = Instance.new("UIStroke")
+    ballStroke.Thickness = 2
+    ballStroke.Color = Color3.fromRGB(100, 100, 100)
+    ballStroke.Parent = ball
+
+    local ballGradient = Instance.new("UIGradient")
+    ballGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
+        ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
+    }
+    ballGradient.Parent = ball
+
+    local colorOff = Color3.fromRGB(100, 100, 100)
+    local colorOn = Colors.BaseColor
+
+    local gradientOff = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(50, 50, 50)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(130, 130, 130))
+    }
+
+    local gradientOn = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
+        ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
+    }
+
+    local ballGradientOff = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 30, 30)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80))
+    }
+
+    local ballGradientOn = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Colors.MainBackgroundStart),
+        ColorSequenceKeypoint.new(1, Colors.MainBackgroundEnd)
+    }
+
+    local tweenInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+    local toggled = defaultValue
+
+    local function toggleSwitch()
+        toggled = not toggled
+
+        local newPos = toggled and UDim2.new(1, -22, 0, 2) or UDim2.new(0, 2, 0, 2)
+        TweenService:Create(ball, tweenInfo, { Position = newPos }):Play()
+
+        local strokeColor = toggled and colorOn or colorOff
+        TweenService:Create(ballStroke, tweenInfo, { Color = strokeColor }):Play()
+        TweenService:Create(frameStroke, tweenInfo, { Color = strokeColor }):Play()
+
+        frameGradient.Color = toggled and gradientOn or gradientOff
+        ballGradient.Color = toggled and ballGradientOn or ballGradientOff
+
+        callback(toggled)
     end
+
+    toggleButton.MouseButton1Click:Connect(toggleSwitch)
+    switch.MouseButton1Click:Connect(toggleSwitch)
+
+    return toggleButton
+end
+
     
     
     --- aqui eo botao🟢
