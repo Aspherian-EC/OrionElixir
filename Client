@@ -2,10 +2,10 @@ local ElixirLib = {}
 
 -- === CORES DEFINIDAS AQUI PARA FÁCIL MANUTENÇÃO ===
 local Colors = {
-    MainBackgroundStart = Color3.fromRGB(0, 255, 0),      -- Neon verde (início degrade)
+    MainBackgroundStart = Color3.fromRGB(0, 0, 0),      -- Neon verde (início degrade)
     MainBackgroundEnd = Color3.fromRGB(25, 25, 25),       -- Escuro (fim degrade)
-    Border = Color3.fromRGB(0, 255, 0),                   -- Verde neon da borda
-    TopBarStart = Color3.fromRGB(0, 255, 0),              -- Neon verde topbar (início degrade)
+    Border = Color3.fromRGB(0, 0, 255),    -- azul neon da borda
+    TopBarStart = Color3.fromRGB(0, 0, 255),               -- azul verde topbar (início degrade)
     TopBarEnd = Color3.fromRGB(30, 30, 30),                -- Escuro topbar (fim degrade)
     TitleText = Color3.fromRGB(200, 200, 255),             -- Cor do texto do título
     LeftPanelBackground = Color3.fromRGB(28, 28, 28),      -- Fundo painel esquerdo (cor base)
