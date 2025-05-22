@@ -960,6 +960,7 @@ function tab:AddTextbox(textboxData)
     local textDisappear = textboxData.TextDisappear or false
     local callback = textboxData.Callback or function() end
 
+    -- Container principal
     local textboxContainer = Instance.new("Frame")
     textboxContainer.Size = UDim2.new(1, 0, 0, 40)
     textboxContainer.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -969,11 +970,12 @@ function tab:AddTextbox(textboxData)
     Instance.new("UICorner", textboxContainer).CornerRadius = UDim.new(0, 8)
 
     local stroke = Instance.new("UIStroke")
-    stroke.Color = Color3.fromRGB(0, 0, 0)
+    stroke.Color = Color3.fromRGB(0, 0, 0) -- cor do stroke de fora 
     stroke.Thickness = 1
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Parent = textboxContainer
 
+    -- Label do Textbox
     local label = Instance.new("TextLabel")
     label.Size = UDim2.new(1, -120, 1, 0)
     label.Position = UDim2.new(0, 10, 0, 0)
@@ -985,6 +987,7 @@ function tab:AddTextbox(textboxData)
     label.TextXAlignment = Enum.TextXAlignment.Left
     label.Parent = textboxContainer
 
+    -- Caixa de texto
     local textBox = Instance.new("TextBox")
     textBox.Size = UDim2.new(0, 100, 0, 24)
     textBox.Position = UDim2.new(1, -110, 0.5, -12)
@@ -1005,6 +1008,7 @@ function tab:AddTextbox(textboxData)
     textBoxStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     textBoxStroke.Parent = textBox
 
+    -- Quando o jogador digitar e sair do foco
     textBox.FocusLost:Connect(function(enterPressed)
         if enterPressed then
             callback(textBox.Text)
