@@ -954,13 +954,12 @@ function tab:AddSlider(sliderData)
 end
 
     
-	function tab:AddTextbox(textboxData)
+function tab:AddTextbox(textboxData)
     local name = textboxData.Name or "Textbox"
     local default = textboxData.Default or ""
     local textDisappear = textboxData.TextDisappear or false
     local callback = textboxData.Callback or function() end
 
-    -- Container principal
     local textboxContainer = Instance.new("Frame")
     textboxContainer.Size = UDim2.new(1, 0, 0, 40)
     textboxContainer.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -970,12 +969,11 @@ end
     Instance.new("UICorner", textboxContainer).CornerRadius = UDim.new(0, 8)
 
     local stroke = Instance.new("UIStroke")
-    stroke.Color = Color3.fromRGB(0, 0, 0) -- cor do stroke
+    stroke.Color = Color3.fromRGB(0, 0, 0)
     stroke.Thickness = 1
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Parent = textboxContainer
 
-    -- Label do Textbox
     local label = Instance.new("TextLabel")
     label.Size = UDim2.new(1, -120, 1, 0)
     label.Position = UDim2.new(0, 10, 0, 0)
@@ -987,7 +985,6 @@ end
     label.TextXAlignment = Enum.TextXAlignment.Left
     label.Parent = textboxContainer
 
-    -- Caixa de texto
     local textBox = Instance.new("TextBox")
     textBox.Size = UDim2.new(0, 100, 0, 24)
     textBox.Position = UDim2.new(1, -110, 0.5, -12)
@@ -1003,12 +1000,11 @@ end
     Instance.new("UICorner", textBox).CornerRadius = UDim.new(0, 6)
 
     local textBoxStroke = Instance.new("UIStroke")
-    textBoxStroke.Color = Color3.fromRGB(0, 255, 0) -- Verde
+    textBoxStroke.Color = Colors.BaseColor -- Usa cor global do tema
     textBoxStroke.Thickness = 1
     textBoxStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     textBoxStroke.Parent = textBox
 
-    -- Quando o jogador digitar e sair do foco
     textBox.FocusLost:Connect(function(enterPressed)
         if enterPressed then
             callback(textBox.Text)
@@ -1017,6 +1013,7 @@ end
 
     return textboxContainer
 end
+
 
     
     return tab
