@@ -1,7 +1,7 @@
 local ElixirLib = {}
 
 -- === BASECOLOR DEFINIDA PARA ALTERAÇÃO GLOBAL ===
-local BaseColor = Color3.fromRGB(0, 120, 255) -- Altere aqui para mudar todo o tema
+local BaseColor = Color3.fromRGB(0, 0, 255) -- Altere aqui para mudar todo o tema
 
 -- Função para escurecer a cor
 local function darkenColor(color, factor)
