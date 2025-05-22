@@ -295,7 +295,7 @@ function Window:MakeTab(tabData)
 
     local icon = Instance.new("ImageLabel")
     icon.Size = UDim2.new(0, 24, 0, 24)
-    icon.Position = UDim2.new(0, 10, 0.5, -12)
+    icon.Position = UDim2.new(0, 10, 0.5, -14)
     icon.BackgroundTransparency = 1
     icon.Image = tabIcon
     icon.Parent = button
