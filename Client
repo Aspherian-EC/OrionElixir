@@ -286,7 +286,7 @@ function Window:MakeTab(tabData)
 
     -- Botão da aba (esquerda)
     local button = Instance.new("TextButton")
-    button.Size = UDim2.new(1, -20, 0, 40)
+    button.Size = UDim2.new(1, -50, 0, 40)
     button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     button.Text = ""
     button.AutoButtonColor = true
@@ -301,7 +301,7 @@ function Window:MakeTab(tabData)
     icon.Parent = button
 
     local label = Instance.new("TextLabel")
-    label.Size = UDim2.new(1, -44, 2, 0)
+    label.Size = UDim2.new(1, -44, 1, 0)
     label.Position = UDim2.new(0, 40, 0, 0)
     label.BackgroundTransparency = 1
     label.Text = tabName
