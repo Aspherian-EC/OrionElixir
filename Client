@@ -954,7 +954,7 @@ function tab:AddSlider(sliderData)
 end
 
     
-function tab:AddTextbox(textboxData)
+	function tab:AddTextbox(textboxData)
     local name = textboxData.Name or "Textbox"
     local default = textboxData.Default or ""
     local textDisappear = textboxData.TextDisappear or false
@@ -970,7 +970,7 @@ function tab:AddTextbox(textboxData)
     Instance.new("UICorner", textboxContainer).CornerRadius = UDim.new(0, 8)
 
     local stroke = Instance.new("UIStroke")
-    stroke.Color = Color3.fromRGB(0, 0, 0) -- cor do stroke de fora 
+    stroke.Color = Color3.fromRGB(0, 0, 0) -- cor do stroke
     stroke.Thickness = 1
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Parent = textboxContainer
@@ -1003,7 +1003,7 @@ function tab:AddTextbox(textboxData)
     Instance.new("UICorner", textBox).CornerRadius = UDim.new(0, 6)
 
     local textBoxStroke = Instance.new("UIStroke")
-    textBoxStroke.Color = Colors.BaseColor -- Usa cor global do tema
+    textBoxStroke.Color = Color3.fromRGB(0, 255, 0) -- Verde
     textBoxStroke.Thickness = 1
     textBoxStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     textBoxStroke.Parent = textBox
@@ -1017,7 +1017,6 @@ function tab:AddTextbox(textboxData)
 
     return textboxContainer
 end
-
 
     
     return tab
